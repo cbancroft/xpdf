@@ -256,7 +256,7 @@ XPDFViewer::XPDFViewer(XPDFApp *appA, GString *fileName,
 #ifndef DISABLE_OUTLINE
   outlineLabels = NULL;
   outlineLabelsLength = outlineLabelsSize = 0;
-  outlinePaneWidth = 175;
+  outlinePaneWidth = appA->getInitialOutlineWidth();
 #endif
 
   // do Motif-specific initialization and create the window;
@@ -1803,7 +1803,7 @@ void XPDFViewer::initToolbar(Widget parent) {
   menuPane = XmCreatePulldownMenu(toolBar, "zoomMenuPane", args, n);
   for (i = 0; i < nZoomMenuItems; ++i) {
     n = 0;
-    s = XmStringCreateLocalized(zoomMenuInfo[i].label);
+    s = XmStringCreateLocalized((char*)zoomMenuInfo[i].label);
     XtSetArg(args[n], XmNlabelString, s); ++n;
     XtSetArg(args[n], XmNuserData, (XtPointer)i); ++n;
     sprintf(buf, "zoom%d", i);

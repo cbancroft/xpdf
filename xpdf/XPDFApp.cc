@@ -87,12 +87,17 @@ struct XPDFAppResources {
   String matteColor;
   String fullScreenMatteColor;
   String initialZoom;
+  // {{{ Added by cbancroft
+  int initialOutlineWidth;
+  // }}}
 };
 
 static Bool defInstallCmap = False;
 static int defRGBCubeSize = defaultRGBCube;
 static Bool defReverseVideo = False;
-
+// {{{ Added by cbancroft
+static int defOutlineWidth = 175;
+// }}}
 static XtResource xResources[] = {
   { "geometry",             "Geometry",             XtRString, sizeof(String), XtOffsetOf(XPDFAppResources, geometry),             XtRString, (XtPointer)NULL             },
   { "title",                "Title",                XtRString, sizeof(String), XtOffsetOf(XPDFAppResources, title),                XtRString, (XtPointer)NULL             },
@@ -102,7 +107,10 @@ static XtResource xResources[] = {
   { "paperColor",           "PaperColor",           XtRString, sizeof(String), XtOffsetOf(XPDFAppResources, paperColor),           XtRString, (XtPointer)NULL             },
   { "matteColor",           "MatteColor",           XtRString, sizeof(String), XtOffsetOf(XPDFAppResources, matteColor),           XtRString, (XtPointer)"gray50"         },
   { "fullScreenMatteColor", "FullScreenMatteColor", XtRString, sizeof(String), XtOffsetOf(XPDFAppResources, fullScreenMatteColor), XtRString, (XtPointer)"black"          },
-  { "initialZoom",          "InitialZoom",          XtRString, sizeof(String), XtOffsetOf(XPDFAppResources, initialZoom),          XtRString, (XtPointer)NULL             }
+  { "initialZoom",          "InitialZoom",          XtRString, sizeof(String), XtOffsetOf(XPDFAppResources, initialZoom),          XtRString, (XtPointer)NULL             },
+  // {{{ Added by cbancroft 
+  { "initialOutlineWidth",  "InitialOutlineWidth",  XtRInt,    sizeof(int),    XtOffsetOf(XPDFAppResources, initialOutlineWidth),  XtRInt,    (XtPointer)&defOutlineWidth }   
+  // }}}
 };
 
 #define nXResources (sizeof(xResources) / sizeof(XtResource))
@@ -171,6 +179,9 @@ void XPDFApp::getResources() {
   installCmap = (GBool)resources.installCmap;
   rgbCubeSize = resources.rgbCubeSize;
   reverseVideo = (GBool)resources.reverseVideo;
+  // {{{ Added by cbancroft
+  initialOutlineWidth = resources.initialOutlineWidth;
+  // }}}
   if (reverseVideo) {
     paperRGB[0] = paperRGB[1] = paperRGB[2] = 0;
     paperPixel = BlackPixel(display, screenNum);
