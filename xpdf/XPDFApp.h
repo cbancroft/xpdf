@@ -77,6 +77,9 @@ public:
   void setFullScreen(GBool fullScreenA) { fullScreen = fullScreenA; }
   GBool getFullScreen() { return fullScreen; }
 
+  // {{{ Added by cbancroft
+  int getInitialOutlineWidth() { return initialOutlineWidth; }
+  // }}}
   XtAppContext getAppContext() { return appContext; }
   Widget getAppShell() { return appShell; }
 
@@ -109,6 +112,10 @@ private:
   Gulong fullScreenMattePixel;
   GString *initialZoom;
   GBool fullScreen;
+
+  // {{{ Added by cbancroft
+  int initialOutlineWidth;
+  // }}}
 };
 
 #endif
