@@ -3,9 +3,11 @@ xpdf
 
 Fork of XPDF to allow setting the initial size of the outline pane.
 
-based off of [xpdf 3.03]:http://www.foolabs.com/xpdf/
+based off of [xpdf 3.03][]
 
 I work with large PDF documents on a daily basis and I was getting sick of
 having to resize the outline pane every time I restarted xpdf.  Since they
 stupidly hardcode it to be 175, I took the liberty of adding an xresource to
 control it instead.
+
+[xpdf 3.03]:http://www.foolabs.com/xpdf/
